@@ -1,0 +1,8 @@
+{
+  "name_mach":  "IM_Machine",
+  "name": "IM_Mold",
+  "consume_price": 30000,
+  "price_unit": "piece",
+  "consume_life": 1000000,
+  "life_unit": "parts"
+}

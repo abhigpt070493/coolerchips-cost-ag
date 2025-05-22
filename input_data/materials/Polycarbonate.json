@@ -1,0 +1,11 @@
+{
+    "name_mat": "Polycarbonate",
+    "density": 0,
+    "price_mat":
+    {
+        "base": 3.00,
+        "low": 3.00,
+        "high": 3.00
+    },
+    "#price_mat_source": "vendor quote"
+}

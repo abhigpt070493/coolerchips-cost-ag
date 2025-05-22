@@ -1,0 +1,28 @@
+{
+    "ann_ops_hrs": 6048,
+    "ann_labor_hrs": 1632,
+    "elec_price":
+    {
+        "base": 0.0673,
+        "low": 0.0673,
+        "high": 0.0673
+    },
+    "fac_rent": 97,
+    "fac_buildout":
+    {
+        "base": 0,
+        "low": 0,
+        "high": 0
+    },
+    "discount_rate": 0.085,
+    "labor_burden": 0.3,
+    "overhead_frac": 0.6,
+    "salary":
+    {
+        "base": 76000,
+        "low": 36000,
+        "high": 88000
+    },
+    "dedicate_equip": false,
+    "dedicate_labor": false
+}

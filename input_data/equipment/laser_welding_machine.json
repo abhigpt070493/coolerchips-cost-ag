@@ -1,0 +1,14 @@
+{
+  "name_mach":  "LW_Machine",
+  "price_mach":  250000,
+  "cost_inst":  25000,
+  "cost_maint":  12500,
+  "maint_downtime":  0,
+  "mach_life": 3000000 ,
+  "mach_life_unit": "parts",
+  "laborfrac_cycle":  0.1,
+  "area_floor_space":  16,
+  "area_clearance":  32,
+  "elec_consume_rate": 30.00
+
+}
