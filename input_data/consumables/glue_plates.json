@@ -1,0 +1,13 @@
+{
+  "name_mach":  "Gluing_Machine",
+  "name": "Glue",
+  "consume_price":
+  {
+    "base": 13,
+    "low": 9,
+    "high": 17
+  },
+  "price_unit": "$/gallon",
+  "consume_life": 3933,
+  "life_unit": "parts"
+}

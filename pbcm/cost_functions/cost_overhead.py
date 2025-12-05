@@ -2,7 +2,7 @@ import math
 
 from pbcm.cost_functions.capital_recovery_factor import calc_crf
 from pbcm.cost_items.Overhead import Overhead
-from parts.Mphx import Mphx
+from parts.Part import Part
 # from parts.Socket import Socket
 # from parts.Pipe import Pipe
 
@@ -12,7 +12,7 @@ def calc_overhead_cost(tot_labor_cost_unit, overhead_frac) -> float:
     return overhead_cost_unit
 
 
-def calc_overhead_cost_alt(over: Overhead, hx: Mphx, n_labor, eff_prod_vol, ann_labor_hrs, ann_prod_vol, fac_rent,
+def calc_overhead_cost_alt(over: Overhead, hx: Part, n_labor, eff_prod_vol, ann_labor_hrs, ann_prod_vol, fac_rent,
                            fac_size, discount_rate, salary):
     # unused mfg labor
     n_labor_unused = math.ceil(n_labor) - n_labor

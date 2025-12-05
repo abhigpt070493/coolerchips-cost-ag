@@ -1,18 +1,24 @@
 {
   "name_mach":  "Assembly_Machine",
-  "price_mach":  60000,
-  "cost_inst":  6000,
-  "cost_maint":  300,
+  "price_mach":  0,
+  "cost_inst":  0,
+  "cost_maint":  0,
   "maint_downtime":  0,
   "mach_life": 10000000 ,
   "mach_life_unit": "parts",
   "laborfrac_cycle":
   {
-    "base": 0.1,
-    "low": 0,
-    "high": 0.2
+    "base": 1,
+    "low": 0.7,
+    "high": 1
   },
-  "area_floor_space":  16,
-  "area_clearance":  32,
-  "elec_consume_rate": 1.00
+  "area_floor_space":  4,
+  "area_clearance":  8,
+  "elec_consume_rate": 0.00,
+  "part_accept_rate":
+  {
+    "base": 0.99,
+    "low": 0.95,
+    "high": 0.99
+  }
 }

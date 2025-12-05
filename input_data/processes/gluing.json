@@ -1,0 +1,10 @@
+{
+    "name": "Gluing",
+    "time_cycle":
+    {
+        "base": 5.00,
+        "low": 4.00,
+        "high": 5.00
+    },
+    "batch_size": 4
+}

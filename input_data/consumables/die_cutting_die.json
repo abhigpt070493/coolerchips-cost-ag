@@ -1,0 +1,13 @@
+{
+  "name_mach":  "DC_Machine",
+  "name": "DC_Machine_die",
+  "consume_price": 560,
+  "price_unit": "piece",
+  "consume_life":
+  {
+    "base": 60000,
+    "low": 20000,
+    "high": 100000
+  },
+  "life_unit": "parts"
+}

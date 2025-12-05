@@ -1,4 +1,5 @@
 from typing import Mapping
+
 from pbcm.cost_items.Facility import Facility
 from pbcm.cost_items.Consumable import Consumable
 from pbcm.cost_items.Machine import Machine
@@ -12,14 +13,14 @@ import json
 
 def create_hx(join_method: str = "Laser Welding", level: str = 'base'):
     # parts from JSON file
-    model_hx = object_from_json('../input_data/parts/mphx_oct24/mphx.json', Part, level=level)
-    all_parts: Mapping[str, Part] = objects_from_dir('../input_data/parts/mphx_oct24/', Part, level=level)
+    model_hx = object_from_json('../input_data/parts/mphx_sabic/mphx.json', Part, level=level)
+    all_parts: Mapping[str, Part] = objects_from_dir('../input_data/parts/mphx_sabic/', Part, level=level)
     # Only include subparts that belong to the MPHX parent
     subparts: Mapping[str, Part] = {k: v for k, v in all_parts.items() if getattr(v, 'parent_part', None) == 'MPHX'}
     model_hx.add_subparts(subparts)
 
     # MACHINES from JSON files
-    im_machine = object_from_json('../input_data/equipment/injection_molding_machine_Tom.json', Machine, level=level)
+    im_machine = object_from_json('../input_data/equipment/injection_molding_machine_SABIC.json', Machine, level=level)
     lw_machine = object_from_json('../input_data/equipment/laser_welding_machine.json', Machine, level=level)
     as_machine = object_from_json('../input_data/equipment/assembly_machine.json', Machine, level=level)
     gl_machine = object_from_json('../input_data/equipment/gluing_machine.json', Machine, level=level)
@@ -33,6 +34,7 @@ def create_hx(join_method: str = "Laser Welding", level: str = 'base'):
     gl_machine.add_consumables(consumables)
     dc_machine.add_consumables(consumables)
 
+
     # Load process parameter files (time_cycle, batch_size) from input_data/processes
     processes_dir = Path('../input_data/processes')
     process_defs = {}
@@ -45,21 +47,25 @@ def create_hx(join_method: str = "Laser Welding", level: str = 'base'):
                 if name:
                     process_defs[name] = pdata
             except Exception:
+                # ignore malformed files
                 continue
 
+    # helper to get time_cycle (in hours) and batch_size for a given process name
     def _get_proc_params(proc_name: str, default_cycle_sec: float, default_batch: int):
         pdata = process_defs.get(proc_name, {})
         tc = pdata.get('time_cycle', default_cycle_sec)
+        # If time_cycle is a dict with levels, pick requested level
         if isinstance(tc, dict):
             tc_val = tc.get(level, tc.get('base', default_cycle_sec))
         else:
             tc_val = tc
+        # time_cycle is in seconds; convert to hours
         try:
             tc_seconds = float(tc_val)
         except Exception:
             tc_seconds = float(default_cycle_sec)
-        # convert seconds to hours
         tc_hours = tc_seconds / 3600.0
+
         bs = pdata.get('batch_size', default_batch)
         try:
             bs_val = int(bs)
@@ -71,20 +77,24 @@ def create_hx(join_method: str = "Laser Welding", level: str = 'base'):
     im_plate_subpart = next(sp for sp in model_hx.subs.values() if sp.name == "IM Plate")
     tc_plate, bs_plate = _get_proc_params("Injection Molding Plate", 14.0, 2)
     inj_mold_plate = ProcessStep("Injection Molding Plate", im_machine, tc_plate, bs_plate, part=im_plate_subpart, mat_use=1, parts_per_unit= im_plate_subpart.count)
+
     header_subpart = next(sp for sp in model_hx.subs.values() if sp.name == "Header")
     tc_header, bs_header = _get_proc_params("Injection Molding Header", 14.0, 2)
     inj_mold_header = ProcessStep("Injection Molding Header", im_machine, tc_header, bs_header, part=header_subpart, mat_use=1, parts_per_unit=header_subpart.count)
+
     endcap_subpart = next(sp for sp in model_hx.subs.values() if sp.name == "Endcap")
     tc_endcap, bs_endcap = _get_proc_params("Injection Molding Endcap", 14.0, 2)
     inj_mold_endcap = ProcessStep("Injection Molding Endcap", im_machine, tc_endcap, bs_endcap, part=endcap_subpart, mat_use=1, parts_per_unit=endcap_subpart.count)
-    tc_die_cut_im, bs_die_cut_im = _get_proc_params("Die Cutting IM Plate", 22.0, 2)
-    die_cut_im = ProcessStep("Die Cutting IM Plate", dc_machine, tc_die_cut_im, bs_die_cut_im, part=im_plate_subpart, mat_use=0, parts_per_unit= im_plate_subpart.count)
+
     tc_die_cut_film, bs_die_cut_film = _get_proc_params("Die Cutting Film", 22.0, 2)
     die_cut_film = ProcessStep("Die Cutting Film", dc_machine, tc_die_cut_film, bs_die_cut_film, part=im_plate_subpart, mat_use=0, parts_per_unit= im_plate_subpart.count)
+
     tc_las_weld, bs_las_weld = _get_proc_params("Laser Welding", 49.0, 4)
     las_weld = ProcessStep("Laser Welding", lw_machine, tc_las_weld, bs_las_weld, part=im_plate_subpart, mat_use=0, parts_per_unit= im_plate_subpart.count)
+
     tc_gluing, bs_gluing = _get_proc_params("Gluing", 49.0, 4)
     gluing = ProcessStep("Gluing", gl_machine, tc_gluing, bs_gluing, part=im_plate_subpart, mat_use=0, parts_per_unit= im_plate_subpart.count)
+
     tc_assembly, bs_assembly = _get_proc_params("Assembly", 4903.0, 1)
     assembly = ProcessStep("Assembly",as_machine, tc_assembly, bs_assembly, mat_use=0, parts_per_unit= 1)
 
@@ -92,7 +102,6 @@ def create_hx(join_method: str = "Laser Welding", level: str = 'base'):
         "Injection Molding Plate": inj_mold_plate,
         "Injection Molding Header": inj_mold_header,
         "Injection Molding Endcap": inj_mold_endcap,
-        "Die Cutting IM Plate": die_cut_im,
         "Die Cutting Film": die_cut_film,
         "Assembly" : assembly
     }

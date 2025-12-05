@@ -1,19 +1,34 @@
 {
   "name_mach":  "DC_Machine",
-  "price_mach":  12125,
-  "cost_inst":  1213,
-  "cost_maint":  606,
+  "price_mach":
+  {
+    "base": 12125,
+    "low": 11250,
+    "high": 13000
+  },
+  "cost_inst":  0.1,
+  "cost_maint":  0.05,
   "maint_downtime":  0,
-  "mach_life": 10000000,
+  "mach_life":
+  {
+    "base": 10000000,
+    "low": 7000000,
+    "high": 13000000
+  },
   "mach_life_unit": "parts",
   "laborfrac_cycle":
   {
     "base": 0.1,
-    "low": 0.0,
-    "high": 0.55
+    "low": 0.7,
+    "high": 0.1
   },
   "area_floor_space":  7,
   "area_clearance":  14,
-  "elec_consume_rate": 7
-
+  "elec_consume_rate": 7,
+  "part_accept_rate":
+  {
+    "base": 0.99,
+    "low": 0.95,
+    "high": 0.99
+  }
 }

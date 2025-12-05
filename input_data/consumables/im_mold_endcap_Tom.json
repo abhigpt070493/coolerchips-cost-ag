@@ -1,0 +1,13 @@
+{
+  "name_mach":  "IM_Machine_Tom",
+  "name": "IM_Mold_endcap",
+  "consume_price": 15000,
+  "price_unit": "piece",
+  "consume_life":
+  {
+    "base": 1000000,
+    "low": 700000,
+    "high": 1300000
+  },
+  "life_unit": "parts"
+}

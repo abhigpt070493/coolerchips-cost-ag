@@ -1,0 +1,10 @@
+{
+    "name": "Laser Welding",
+    "time_cycle":
+    {
+        "base": 49.00,
+        "low": 34.00,
+        "high": 49.00
+    },
+    "batch_size": 4
+}

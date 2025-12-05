@@ -1,0 +1,7 @@
+{
+  "name":"IM Plate",
+  "parent_part":"MPHX",
+  "mat_choice": "Polycarbonate",
+  "wt": 0.015,
+  "count": 750
+}

@@ -1,19 +1,14 @@
 {
-  "name_mach":  "LW_Machine",
-  "price_mach":
-  {
-    "base": 250000,
-    "low": 175000,
-    "high": 325000
-  },
+  "name_mach":  "IM_Machine_SABIC",
+  "price_mach":  142220,
   "cost_inst":  0.1,
   "cost_maint":  0.05,
   "maint_downtime":  0,
   "mach_life":
   {
-    "base": 2100000,
-    "low": 3000000,
-    "high": 3900000
+    "base": 10000000,
+    "low": 7000000,
+    "high": 13000000
   },
   "mach_life_unit": "parts",
   "laborfrac_cycle":
@@ -22,9 +17,15 @@
     "low": 0.07,
     "high": 0.1
   },
-  "area_floor_space":  16,
-  "area_clearance":  32,
-  "elec_consume_rate": 30.00,
+  "area_floor_space":  7.2,
+  "area_clearance":  14.4,
+  "elec_consume_rate": 50.35,
+  "scrap_rate":
+  {
+    "base": 0.0,
+    "low": 0.0,
+    "high": 0.05
+  },
   "part_accept_rate":
   {
     "base": 0.99,

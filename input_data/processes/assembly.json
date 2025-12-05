@@ -1,0 +1,10 @@
+{
+    "name": "Assembly",
+    "time_cycle":
+    {
+        "base": 4860,
+        "low": 3402,
+        "high": 4860
+    },
+    "batch_size": 1
+}

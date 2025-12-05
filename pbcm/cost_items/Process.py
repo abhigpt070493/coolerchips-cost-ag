@@ -1,12 +1,13 @@
 from copy import copy
 
 from pbcm.cost_items.Machine import Machine
+from parts.Part import Part
 
 
 class ProcessStep:
     """Describes characteristics of a manufacturing process step."""
 
-    def __init__(self, name_process_step=None, mach: Machine=None, time_cycle=0, batch_size=1, parts_per_unit=1):
+    def __init__(self, name_process_step=None, mach: Machine=None, time_cycle=0, batch_size=1, parts_per_unit=1, part: Part=None, mat_use=0):
         """Initializes a process step with supplied process characteristics"""
         self.name_process_step = name_process_step
         self.mach = mach
@@ -15,6 +16,8 @@ class ProcessStep:
         self.parts_per_unit = parts_per_unit
         self.fac_config = {}
         self.proc_cost = {}
+        self.part = part
+        self.mat_use = mat_use
 
     def set_time_cycle(self, time_cycle):
         """This method sets cycle time for the process step"""

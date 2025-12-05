@@ -1,11 +1,11 @@
 {
-    "name_mat": "Polycarbonate",
+    "name_mat": "Konduit",
     "density": 0,
     "price_mat":
     {
-        "base": 3.00,
-        "low": 3.00,
-        "high": 3.00
+        "base": 13.00,
+        "low": 7.00,
+        "high": 13.00
     },
     "price_mat_source": "vendor quote",
     "recycling_rate": 0.15

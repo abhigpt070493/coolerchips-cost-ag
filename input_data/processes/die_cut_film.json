@@ -1,0 +1,10 @@
+{
+    "name": "Die Cutting Film",
+    "time_cycle":
+    {
+        "base": 22.00,
+        "low": 15.00,
+        "high": 22.00
+    },
+    "batch_size": 2
+}

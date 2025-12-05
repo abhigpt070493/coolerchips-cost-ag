@@ -1,0 +1,7 @@
+{
+  "name":"Endcap",
+  "parent_part":"MPHX",
+  "mat_choice": "Polycarbonate",
+  "wt": 0.069,
+  "count": 12
+}
