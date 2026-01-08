@@ -1,3 +1,12 @@
+import sys
+from pathlib import Path
+
+# Ensure project root is on sys.path so that 'analyses', 'tools', etc. can be imported
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+
 from tools.monte_carlo import monte_carlo_run, save_results_and_plots
 from datetime import datetime
 from pathlib import Path

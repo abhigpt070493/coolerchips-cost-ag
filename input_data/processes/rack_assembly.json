@@ -1,0 +1,10 @@
+{
+    "name": "Rack Assembly",
+    "time_cycle":
+    {
+        "base": 1265,
+        "low": 1265,
+        "high": 1265
+    },
+    "batch_size": 1
+}

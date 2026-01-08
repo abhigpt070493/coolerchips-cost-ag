@@ -2,13 +2,20 @@
 # from typing import Mapping
 # import matplotlib.pyplot as plt
 
+import sys
+from pathlib import Path
+
+# Ensure project root is on sys.path so that 'analyses', 'tools', etc. can be imported
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
 from analyses.Scenario import Scenario
 from analyses.cost_output import calc_cost_obj, conv_cost_to_df
-from analyses.iterations.mphx_oct24 import create_hx
-# from analyses.iterations.mphx_sabic import create_hx
+# from analyses.iterations.mphx_oct24 import create_hx
+from analyses.iterations.mphx_sabic import create_hx
 from tools.color_scheme import set_color_scheme
 from datetime import datetime
-from pathlib import Path
 
 now = datetime.now()
 formatted_now = now.strftime("%Y-%m-%d_%H-%M-%S")
@@ -22,7 +29,7 @@ if __name__ == "__main__":
     # SCENARIO: EOS M290, with tolerance
 
     # initialize model from baseline
-    model_hx, mfg_process, over, fac = create_hx(join_method="Laser Welding", level='base')
+    model_hx, mfg_process, over, fac = create_hx(join_method="Gluing", level='base')
     ann_prod_vol = 2074
 
 

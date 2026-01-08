@@ -1,0 +1,29 @@
+{
+  "name_mach":  "Lifting_Machine",
+  "price_mach":
+  {
+    "base": 8750,
+    "low": 5500,
+    "high": 12000
+  },
+  "cost_inst":  0.1,
+  "cost_maint":  0.05,
+  "maint_downtime":  0,
+  "mach_life": 15 ,
+  "mach_life_unit": "years",
+  "laborfrac_cycle":
+  {
+    "base": 1,
+    "low": 1,
+    "high": 1
+  },
+  "area_floor_space":  23.4,
+  "area_clearance":  0,
+  "elec_consume_rate": 0.00,
+  "part_accept_rate":
+  {
+    "base": 1,
+    "low": 1,
+    "high": 1
+  }
+}

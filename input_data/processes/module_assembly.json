@@ -1,0 +1,10 @@
+{
+    "name": "Module Assembly",
+    "time_cycle":
+    {
+        "base": 409,
+        "low": 409,
+        "high": 409
+    },
+    "batch_size": 1
+}

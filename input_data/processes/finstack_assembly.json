@@ -1,0 +1,10 @@
+{
+    "name": "Fin Stack Assembly",
+    "time_cycle":
+    {
+        "base": 6798,
+        "low": 6798,
+        "high": 6798
+    },
+    "batch_size": 1
+}
